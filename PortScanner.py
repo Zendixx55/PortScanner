@@ -2,7 +2,7 @@ import subprocess
 import sys
 from os import getcwd
 
-required = {
+required = { # These are the required libraries that will be installed in your computer incase you dont have the packages installed already
     'requests' : 'requests',
     'paramiko' : 'paramiko',
     'scapy.all' : 'scapy',
@@ -21,7 +21,7 @@ import paramiko
 from pwn import *
 
 
-def listsCreation():
+def listsCreation(): # This port scanner will also try to bruteforce ssh if open, this is the function that will download and use the lists
     username_list_request = "https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Usernames/top-usernames-shortlist.txt"
     password_list_request = "https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/500-worst-passwords.txt"
     r_username = requests.get(username_list_request)
@@ -43,7 +43,7 @@ def listsCreation():
     return usernamelist, passwordlist
 
 usernamelist, passwordlist = listsCreation()
-target = input("Please enter target IP: ")
+target = input("Please enter target IP: ") # Interactive program, you will write your own wanted IP address for the target
 while True:
     int_name = 'en0'
     ip_packet = IP(dst=target)
